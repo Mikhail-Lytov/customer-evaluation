@@ -1,0 +1,53 @@
+server:
+  port: 12001
+
+swagger:
+  base-url: ${SWAGGER_URL:https://csc-admin.lab2.pepeshka.ru/}
+  title: ${SWAGGER_TITLE:Сервис работы с БД}
+
+auth:
+  whitelist:
+    /v2/**
+    /actuator/**
+    /v3/**
+    /swagger-resources/**
+    /swagger-ui/**
+    /
+    /auth/**
+    /api_csc/login
+
+camunda:
+  bpm:
+    admin-user:
+      id: admin
+      password: 34RfVgy78
+    authorization:
+      enabled: true
+    default-serialization-format: application/json
+    job-execution:
+      enabled: true
+      max-jobs-per-acquisition: 5
+      max-pool-size: 20
+    id-generator: simple
+    generic-properties:
+      properties:
+        historyCleanupBatchWindowStartTime: "01:00"
+        historyCleanupBatchWindowEndTime: "09:00"
+        historyCleanupStrategy: endTimeBased
+
+spring:
+  application:
+    name: customer-evaluation
+    version: test
+  datasource:
+    url: jdbc:postgresql://localhost:5432/demo_project_camunda
+    username: postgres
+    password: 8267
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+token:
+  signing:
+    key: 53A73E5F1C4E0A2D3B5F2D784E6A1B423D6F247D1F6E5C3A596D635A75327855
