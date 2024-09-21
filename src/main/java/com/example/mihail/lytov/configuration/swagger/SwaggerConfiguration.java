@@ -11,11 +11,11 @@ import org.springframework.context.annotation.Configuration;
 @OpenAPIDefinition(info = @Info(title = "${swagger.title}",
         version = "${spring.application.version}",description = "${spring.application.name}"),
         servers = @Server(url = "${swagger.base-url}"))
-/*@SecurityScheme(
+@SecurityScheme(
         name = "JWT",
         type = SecuritySchemeType.HTTP,
         bearerFormat = "JWT",
         scheme = "bearer"
-)*/
+)
 public class SwaggerConfiguration {
 }

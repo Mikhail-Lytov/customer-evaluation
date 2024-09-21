@@ -1,4 +1,4 @@
-package com.example.mihail.lytov.configuration;
+package com.example.mihail.lytov.configuration.security;
 
 import com.example.mihail.lytov.service.JwtService;
 import com.example.mihail.lytov.service.UserService;

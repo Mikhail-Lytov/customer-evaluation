@@ -2,8 +2,8 @@ server:
   port: 12001
 
 swagger:
-  base-url: ${SWAGGER_URL:https://csc-admin.lab2.pepeshka.ru/}
-  title: ${SWAGGER_TITLE:Сервис работы с БД}
+  base-url: ${SWAGGER_URL:http://localhost:${server.port}}
+  title: ${SWAGGER_TITLE:CAMUNDA SWAGGER}
 
 auth:
   whitelist:

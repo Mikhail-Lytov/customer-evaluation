@@ -2,6 +2,7 @@ package com.example.mihail.lytov.controller.controller;
 
 import com.example.mihail.lytov.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,7 +18,7 @@ public class ExampleController {
     private final UserService service;
 
     @GetMapping
-    @Operation(summary = "Доступен только авторизованным пользователям")
+    @Operation(summary = "Доступен только авторизованным пользователям", security = @SecurityRequirement(name = "bearer"))
     public String example() {
         return "Hello, world!";
     }
