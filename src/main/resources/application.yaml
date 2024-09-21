@@ -14,7 +14,8 @@ auth:
     /swagger-ui/**
     /
     /auth/**
-    /api_csc/login
+    /camunda/**
+    /camunda-welcome
 
 camunda:
   bpm:

@@ -18,20 +18,20 @@ public class ExampleController {
     private final UserService service;
 
     @GetMapping
-    @Operation(summary = "Доступен только авторизованным пользователям", security = @SecurityRequirement(name = "bearer"))
+    @Operation(summary = "Доступен только авторизованным пользователям", security = @SecurityRequirement(name = "JWT"))
     public String example() {
         return "Hello, world!";
     }
 
     @GetMapping("/admin")
-    @Operation(summary = "Доступен только авторизованным пользователям с ролью ADMIN")
+    @Operation(summary = "Доступен только авторизованным пользователям с ролью ADMIN", security = @SecurityRequirement(name = "JWT"))
     @PreAuthorize("hasRole('ADMIN')")
     public String exampleAdmin() {
         return "Hello, admin!";
     }
 
     @GetMapping("/get-admin")
-    @Operation(summary = "Получить роль ADMIN (для демонстрации)")
+    @Operation(summary = "Получить роль ADMIN (для демонстрации)", security = @SecurityRequirement(name = "JWT"))
     public void getAdmin() {
         service.getAdmin();
     }
