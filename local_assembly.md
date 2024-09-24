@@ -1,11 +1,11 @@
-# Локальная сборка
+# Инструкция по локальному запуску
 
 ## Локальный запуск через исходники
 
 Обязательные условия
 - java 17
 - postgres version > 14
-- mvn сборщик
+- Maven сборщик
 
 ### 1. Создание бд
 
@@ -79,3 +79,7 @@ COPY --from=build-deps ${JAR_FILE} app.jar
 CMD ["java","-jar","/app.jar","-Xmx4g", "-Xms4g", "-Dfile.encoding=UTF-8","-Dcom.sun.net.ssl.checkRevocation=false"]
 
 ```
+
+## Полезная информация
+
+По дефолту swagger работы с приложением расположен по url: http://localhost:12001/swagger-ui/index.html
