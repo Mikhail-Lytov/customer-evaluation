@@ -1,5 +1,5 @@
 server:
-  port: 12001
+  port: ${PORT:12001}
 
 management:
   endpoint:
@@ -29,37 +29,37 @@ auth:
 camunda:
   bpm:
     admin-user:
-      id: admin
-      password: 34RfVgy78
+      id: ${CAMUNDA_USER:admin}
+      password: ${CAMUNDA_PASSWORD:34RfVgy78}
     authorization:
-      enabled: true
+      enabled: ${AUTHORIZATION_ENABLED:true}
     default-serialization-format: application/json
     job-execution:
       enabled: true
-      max-jobs-per-acquisition: 5
-      max-pool-size: 20
-    id-generator: simple
+      max-jobs-per-acquisition: ${MAX-jobs-per-acquisition:5}
+      max-pool-size: ${MAX-POOL-SIZE:20}
+    id-generator: ${ID-GENERATOR:simple}
     generic-properties:
       properties:
         # nforceHistoryTimeToLive: false
-        historyTimeToLive: P1D
-        historyCleanupBatchWindowStartTime: "01:00"
-        historyCleanupBatchWindowEndTime: "09:00"
-        historyCleanupStrategy: endTimeBased
+        historyTimeToLive: ${HISTORY-TIME-TO-LIVE:P1D}
+        historyCleanupBatchWindowStartTime: ${HISTORY-CLEANANUP-BATCH-WINDOW-START-TIME:01:00}
+        historyCleanupBatchWindowEndTime: ${HISTORY-CLEANANUP-BATCH-WINDOW-END-TIME:09:00}
+        historyCleanupStrategy: ${HISTORY-CLEANUP-STRATEGY:endTimeBased}
 
 spring:
   application:
-    name: customer-evaluation
-    version: test
+    name: ${SERVICE_NAME:customer-evaluation}
+    version: ${SERVICE_VERSION:DEMO}
   datasource:
-    url: jdbc:postgresql://localhost:5432/demo_project_camunda
-    username: postgres
-    password: 8267
-    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:demo_project_camunda}
+    username: ${SECRET_DB_USER_NAME:postgres}
+    password: ${SECRET_DB_USER_PASSWORD:8267}
+    driver-class-name: ${DRIVER_BD:org.postgresql.Driver}
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: ${DDL_AUTO:validate}
 
 token:
   signing:
-    key: 53A73E5F1C4E0A2D3B5F2D784E6A1B423D6F247D1F6E5C3A596D635A75327855
+    key: ${TOKEN_KEY:53A73E5F1C4E0A2D3B5F2D784E6A1B423D6F247D1F6E5C3A596D635A75327855}
