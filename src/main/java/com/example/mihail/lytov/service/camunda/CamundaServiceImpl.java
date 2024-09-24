@@ -31,8 +31,8 @@ public class CamundaServiceImpl implements CamundaService {
             Map<String, Object> inputData = new HashMap<>();
             inputData.put("region_input", dto.getRegion());
             inputData.put("capital_input", dto.getCapital());
-            inputData.put("inn_input", dto.getInn().length() == 12);
-            inputData.put("resident_input", dto.getResident().startsWith("9909"));
+            inputData.put("inn_input", !(dto.getInn().length() == 12));
+            inputData.put("resident_input", !dto.getResident().startsWith("9909"));
 
             DmnDecisionRequirementsGraph dmnDecisionGraph = dmnEngine.parseDecisionRequirementsGraph(modelInstance);
             DmnDecision dmnDecision = dmnDecisionGraph.getDecision("result_map");
