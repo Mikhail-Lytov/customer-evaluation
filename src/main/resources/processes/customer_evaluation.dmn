@@ -6,14 +6,14 @@
     </informationRequirement>
     <decisionTable id="DecisionTable_17iigka">
       <input id="Input_1" camunda:inputVariable="region">
-        <inputExpression id="InputExpression_1" typeRef="string">
+        <inputExpression id="InputExpression_1" typeRef="integer">
           <text>region_input</text>
         </inputExpression>
       </input>
       <output id="Output_1" name="region_output" typeRef="boolean" />
       <rule id="DecisionRule_14zxyt8">
         <inputEntry id="UnaryTests_0ogzi6h">
-          <text>"24"</text>
+          <text>24</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0o1mpbo">
           <text>false</text>
@@ -21,7 +21,7 @@
       </rule>
       <rule id="DecisionRule_0j480ni">
         <inputEntry id="UnaryTests_1fl8tto">
-          <text></text>
+          <text>not(24)</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0a8mxoj">
           <text>true</text>

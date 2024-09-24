@@ -23,14 +23,14 @@ public class CamundaServiceImpl implements CamundaService {
     private final DmnEngine dmnEngine;
 
 
-    public void verificationUser(CustomerEvaluationDTO dto) {
+    public Map<String, Object> verificationUser(CustomerEvaluationDTO dto) {
         try {
             File file = new File("src/main/resources/processes/customer_evaluation.dmn");
             DmnModelInstance modelInstance = Dmn.readModelFromFile(file);
             //DecisionDefinition decisionDefinition = (DecisionDefinition) modelInstance.getDefinitions();
             Map<String, Object> inputData = new HashMap<>();
-            inputData.put("region_input", "test");
-            inputData.put("capital_input", 50000000);
+            inputData.put("region_input", dto.getRegion());
+            inputData.put("capital_input", dto.getCapital());
             inputData.put("inn_input", dto.getInn().length() == 12);
             inputData.put("resident_input", dto.getResident().startsWith("9909"));
             //inputData.put("bet2", "ножницы");
@@ -39,7 +39,7 @@ public class CamundaServiceImpl implements CamundaService {
             DmnDecisionRequirementsGraph dmnDecisionGraph = dmnEngine.parseDecisionRequirementsGraph(modelInstance);
             DmnDecision dmnDecision = dmnDecisionGraph.getDecision("result_map");
             DmnDecisionResult decisionResult = dmnEngine.evaluateDecision(dmnDecision, inputData);
-            log.warn(decisionResult.getFirstResult().getEntryMap().toString());
+            return decisionResult.getFirstResult().getEntryMap();
 
         }catch (Exception e) {
             e.printStackTrace();
