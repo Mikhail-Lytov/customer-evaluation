@@ -1,6 +1,15 @@
 server:
   port: 12001
 
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    ldap:
+      enabled: false
+
 swagger:
   base-url: ${SWAGGER_URL:http://localhost:${server.port}}
   title: ${SWAGGER_TITLE:CAMUNDA SWAGGER}
@@ -32,6 +41,8 @@ camunda:
     id-generator: simple
     generic-properties:
       properties:
+        # nforceHistoryTimeToLive: false
+        historyTimeToLive: P1D
         historyCleanupBatchWindowStartTime: "01:00"
         historyCleanupBatchWindowEndTime: "09:00"
         historyCleanupStrategy: endTimeBased
