@@ -1,6 +1,12 @@
 # Локальная сборка
 
 ## Локальный запуск через исходники
+
+Обязательные условия
+- java 17
+- postgres version > 14
+- mvn сборщик
+
 ### 1. Создание бд
 
 Создайте базу данных в Postgres
@@ -50,3 +56,26 @@ java -jar /{you_dir}.jar -Xmx4g -Xms4g  -Dfile.encoding=UTF-8 -Dcom.sun.net.ssl.
 ```
 **you_dir** - Директория где лежит ваш jar 
 
+## Запуск через docker
+
+```bash
+docker build
+```
+
+```dockerfile
+FROM maven:3.8.5-openjdk-18-slim as build-deps
+WORKDIR /usr/scr/app
+COPY . ./
+RUN mvn clean package
+
+FROM openjdk:18-slim-buster as base
+ENV TZ=Europe/Moscow
+RUN apt-get update && apt-get install -yy tzdata
+RUN cp /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+FROM base as app
+ARG JAR_FILE=/usr/scr/app/target/*.jar
+COPY --from=build-deps ${JAR_FILE} app.jar
+CMD ["java","-jar","/app.jar","-Xmx4g", "-Xms4g", "-Dfile.encoding=UTF-8","-Dcom.sun.net.ssl.checkRevocation=false"]
+
+```
