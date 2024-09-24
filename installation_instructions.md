@@ -5,23 +5,23 @@
 ### Инструкция по сборке через исходники
 
 Обязательные условия
-- java 17
-- postgres version > 14
-- mvn сборщик
+- Java 17
+- PostgreSQL версии 14 и выше
+- Maven сборщик
 
-С использованием mvn выполните следующий скрипт
+Сборка приложения:
 ```bash
 mvn clean package
 ```
 
-Затем запустите своё приложение
+Запуск приложения:
 ```bash
 java -jar /{you_dir}.jar -Xmx4g -Xms4g  -Dfile.encoding=UTF-8 -Dcom.sun.net.ssl.checkRevocation=false
 ```
 
 ### Инструкция по сборке через docker
 
-dockerFIle
+dockerFIle:
 ```dockerfile
 FROM maven:3.8.5-openjdk-18-slim as build-deps
 WORKDIR /usr/scr/app
@@ -39,7 +39,7 @@ COPY --from=build-deps ${JAR_FILE} app.jar
 CMD ["java","-jar","/app.jar","-Xmx4g", "-Xms4g", "-Dfile.encoding=UTF-8","-Dcom.sun.net.ssl.checkRevocation=false"]
 ```
 
-docker-compose
+docker-compose.yml:
 
 ```dockerfile
 version: '3'
