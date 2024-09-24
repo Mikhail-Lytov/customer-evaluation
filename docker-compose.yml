@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  demo-project-camunda:
+    build: ./customer-evaluation
+    container_name: customer
+    ports:
+      - "9999:9999"
+    restart: unless-stopped
+    environment:
+      SPRING_APPLICATION_JSON: '{
+                                     "SWAGGER_BASE_URL":"http://localhost:",
+                                     "BD_USER_NAME":"postgres",
+                                     "BD_PASSWORD":"8267",
+                                     "DB_HOST":"postgres_bd",
+                                     "DB_PORT":"5432",
+                                     "DB_NAME":"demo_project_camunda",
+                                     "DRIVER":"org.postgresql.Driver",
+                                     "PORT":"9999",
+                                     "DDL_AUTO":"create"
+      }'
+    depends_on:
+      - postgresdb
+    volumes:
+      - .m2:/root/.m2
+
+    stdin_open: true
+    tty: true
+
+
+  postgresdb:
+    container_name: postgres_bd
+    # образ базы данных
+    image: postgres:15
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=8267
+      - POSTGRES_DB=demo_project_camunda
+    # хранить в не контейнера
+    volumes:
+      - db:/var/lib/postgres
+
+volumes:
+  db:
