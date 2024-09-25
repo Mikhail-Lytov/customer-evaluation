@@ -11,7 +11,7 @@ management:
       enabled: false
 
 swagger:
-  base-url: ${SWAGGER_URL:http://localhost:${server.port}}
+  base-url: ${SWAGGER_URL:http://localhost:12001}
   title: ${SWAGGER_TITLE:CAMUNDA SWAGGER}
 
 auth:

@@ -53,13 +53,13 @@ services:
     restart: unless-stopped
     environment:
       SPRING_APPLICATION_JSON: '{
-                                     "SWAGGER_BASE_URL":"http://localhost:",
-                                     "BD_USER_NAME":"postgres",
-                                     "BD_PASSWORD":"8267",
+                                     "SWAGGER_URL":"http://localhost:",
+                                     "SECRET_DB_USER_NAME":"postgres",
+                                     "SECRET_DB_USER_PASSWORD":"8267",
                                      "DB_HOST":"postgres_bd",
                                      "DB_PORT":"5432",
                                      "DB_NAME":"demo_project_camunda",
-                                     "DRIVER":"org.postgresql.Driver",
+                                     "DRIVER_BD":"org.postgresql.Driver",
                                      "PORT":"9999",
                                      "DDL_AUTO":"create"
       }'

@@ -9,6 +9,7 @@ import org.camunda.bpm.dmn.engine.DmnDecisionResult;
 import org.camunda.bpm.dmn.engine.DmnEngine;
 import org.camunda.bpm.model.dmn.Dmn;
 import org.camunda.bpm.model.dmn.DmnModelInstance;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -25,7 +26,8 @@ public class CamundaServiceImpl implements CamundaService {
 
     public Map<String, Object> verificationUser(CustomerEvaluationDTO dto) {
         try {
-            File file = new File("src/main/resources/processes/customer_evaluation.dmn");
+            ClassPathResource resource = new ClassPathResource("/processes/customer_evaluation.dmn");
+            File file = resource.getFile();
             DmnModelInstance modelInstance = Dmn.readModelFromFile(file);
 
             Map<String, Object> inputData = new HashMap<>();
