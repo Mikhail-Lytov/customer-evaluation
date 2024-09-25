@@ -26,7 +26,7 @@ public class CamundaServiceImpl implements CamundaService {
 
     public Map<String, Object> verificationUser(CustomerEvaluationDTO dto) {
         try {
-            ClassPathResource resource = new ClassPathResource("/processes/customer_evaluation.dmn");
+            ClassPathResource resource = new ClassPathResource("customer_evaluation.dmn");
             File file = resource.getFile();
             DmnModelInstance modelInstance = Dmn.readModelFromFile(file);
 
