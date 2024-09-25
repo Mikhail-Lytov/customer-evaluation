@@ -53,7 +53,7 @@ services:
     restart: unless-stopped
     environment:
       SPRING_APPLICATION_JSON: '{
-                                     "SWAGGER_URL":"http://localhost:",
+                                     "SWAGGER_URL":"http://localhost:9999",
                                      "SECRET_DB_USER_NAME":"postgres",
                                      "SECRET_DB_USER_PASSWORD":"8267",
                                      "DB_HOST":"postgres_bd",
