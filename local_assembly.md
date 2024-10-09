@@ -35,6 +35,24 @@ create table users
 alter table users
     owner to postgres;
 ```
+Примените скрипт в бд для создании таблицы результатов
+
+```sql
+create table result_entity
+(
+    id       bigserial
+        constraint result_entity_pk
+            primary key,
+    inn      boolean,
+    region   boolean,
+    capital  boolean,
+    resident boolean,
+    result   boolean,
+    users    bigint
+        constraint result_entity_users_id_fk
+            references users
+);
+```
 В конфигурацию **application.yml** впишите следующие переменные
 
 - DB_HOST - хост вашей бд
