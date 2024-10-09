@@ -9,10 +9,19 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class ResultEntityService {
+
     private final ResultEntityRepository repository;
+
+    private final UserService userService;
 
     @Transactional
     public ResultEntity save(ResultEntity resultEntity) {
-        return repository.save(resultEntity);
+        try {
+            resultEntity.setUser(userService.getCurrentUser());
+            return repository.save(resultEntity);
+        }catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e.getClass() + " error save result. " + e.getMessage());
+        }
     }
 }
