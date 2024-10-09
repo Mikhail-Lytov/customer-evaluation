@@ -27,7 +27,7 @@ public class CamundaServiceImpl implements CamundaService {
             inputData.put("region_input", dto.getRegion());
             inputData.put("capital_input", dto.getCapital());
             inputData.put("inn_input", dto.getInn());
-            inputData.put("resident_input", !dto.getResident().startsWith("9909"));
+            inputData.put("resident_input", dto.getResident());
 
             DecisionService decisionService = processEngine.getDecisionService();
 

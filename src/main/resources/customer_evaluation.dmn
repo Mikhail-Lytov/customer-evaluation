@@ -59,8 +59,8 @@
     </decisionTable>
   </decision>
   <decision id="resident" name="resident">
-    <informationRequirement id="InformationRequirement_0730xd1">
-      <requiredInput href="#InputData_1ht1geh" />
+    <informationRequirement id="InformationRequirement_0jntl3b">
+      <requiredDecision href="#Literal_resident" />
     </informationRequirement>
     <decisionTable id="DecisionTable_10q6dkb">
       <input id="InputClause_1jimnx5" biodi:width="192" camunda:inputVariable="resident_input">
@@ -634,6 +634,15 @@
       <text>return inn_input.length() != 12</text>
     </literalExpression>
   </decision>
+  <decision id="Literal_resident" name="check resident start wirh 9909">
+    <variable id="InformationItem_1x3naep" name="resident_input" typeRef="string" />
+    <informationRequirement id="InformationRequirement_02taf6j">
+      <requiredInput href="#InputData_1ht1geh" />
+    </informationRequirement>
+    <literalExpression id="LiteralExpression_1pdnuxm" expressionLanguage="groovy">
+      <text>return !resident_input.startsWith("9909")</text>
+    </literalExpression>
+  </decision>
   <dmndi:DMNDI>
     <dmndi:DMNDiagram>
       <dmndi:DMNShape dmnElementRef="region">
@@ -681,17 +690,12 @@
         <dc:Bounds height="45" width="125" x="807" y="647" />
       </dmndi:DMNShape>
       <dmndi:DMNShape id="DMNShape_071lnkj" dmnElementRef="InputData_1ht1geh">
-        <dc:Bounds height="45" width="125" x="1137" y="647" />
+        <dc:Bounds height="45" width="125" x="1137" y="697" />
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="DMNEdge_1pmhl3a" dmnElementRef="InformationRequirement_1c5gxf3">
         <di:waypoint x="870" y="647" />
         <di:waypoint x="870" y="520" />
         <di:waypoint x="870" y="500" />
-      </dmndi:DMNEdge>
-      <dmndi:DMNEdge id="DMNEdge_1ei7ce0" dmnElementRef="InformationRequirement_0730xd1">
-        <di:waypoint x="1200" y="647" />
-        <di:waypoint x="1200" y="520" />
-        <di:waypoint x="1200" y="500" />
       </dmndi:DMNEdge>
       <dmndi:DMNEdge id="DMNEdge_1jmzu22" dmnElementRef="InformationRequirement_0j8r8s9">
         <di:waypoint x="1200" y="420" />
@@ -711,6 +715,19 @@
         <di:waypoint x="540" y="661" />
         <di:waypoint x="540" y="641" />
       </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_0uhltgo" dmnElementRef="InformationRequirement_02taf6j">
+        <di:waypoint x="1200" y="697" />
+        <di:waypoint x="1200" y="650" />
+        <di:waypoint x="1200" y="630" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_0myhuhn" dmnElementRef="InformationRequirement_0jntl3b">
+        <di:waypoint x="1200" y="550" />
+        <di:waypoint x="1200" y="520" />
+        <di:waypoint x="1200" y="500" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1aes997" dmnElementRef="Literal_resident">
+        <dc:Bounds height="80" width="180" x="1110" y="550" />
+      </dmndi:DMNShape>
     </dmndi:DMNDiagram>
   </dmndi:DMNDI>
 </definitions>
